@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+.app-container {
+    grid-template-areas:
+        "search search"
+        "current current"
+        "hourly hourly"
+        "fiveday fiveday"
+        "feels humidity"
+}
+
+@media (width>768px) {
+
+    .app-container {
+        grid-template-areas:
+            "search search search search"
+            "current current current current"
+            "hourly hourly fiveday fiveday"
+            "feels humidity fiveday fiveday"
+    }
+}
+
+.search {
+    grid-area: search;
+}
+
+.current-weather {
+    grid-area: current;
+}
+
+.hourly-forecast-container {
+    grid-area: hourly;
+}
+
+.five-day-forecast-container {
+    grid-area: fiveday;
+}
+
+.feels-like {
+    grid-area: feels;
+}
+
+.humidity {
+    grid-area: humidity;
+}

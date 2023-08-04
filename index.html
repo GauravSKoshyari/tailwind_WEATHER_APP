@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+    <link rel="stylesheet" href="input.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main
+        class="app-container mt-3 border border-black rounded-xl p-6 grid grid-cols-2 md:grid-cols-4 gap-4 [&>*:not(:first-child)]:border [&>*:not(:first-child)]:border-black  [&>*:not(:first-child)]:p-4 [&>*:not(:first-child)]:rounded-lg max-w-4xl m-auto">
+        <article class="search h-14">
+            <input type="search" name="search" id="search" list="cities"
+                class="w-full  placeholder:text-2xl border-2 border-black p-3 rounded-lg" placeholder="Search City">
+            <datalist id="cities">
+                <!-- city options here  -->
+            </datalist>
+        </article>
+        <article class="current-weather text-center font-semibold">
+            <p class="text-2xl">city</p>
+            <p class="text-6xl mb-3">temp</p>
+            <p>desciption</p>
+            <p>H:max-t L:min-t</p>
+        </article>
+        <article class="hourly-forecast-container text-center space-y-3 flex flex-col justify-center">
+            <p class="text-3xl font-semibold mb-6 ">Hourly Forecast</p>
+            <article
+                class=" grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] grid-flow-col overflow-auto gap-x-2 pb-4 ">
+                <section class="hourly-forecast">
+                    <p class="text-lg">Now</p>
+                    <img src="" alt="weather-img" class="w-24 h-24 mt-9 mb-4">
+                    <p>temp</p>
+                </section>
+                <section class="hourly-forecast space-y-2">
+                    <p class="text-lg">3 PM</p>
+                    <p class="text-lg">Date</p>
+                    <img src="" alt="weather-img" class="w-24 h-24">
+                    <p>temp</p>
+                </section>
+
+            </article>
+        </article>
+
+        <article class="five-day-forecast-container text-center font-semibold space-y-2">
+            <p class="text-3xl font-semibold mb-6  ">5-Day Forecast</p>
+            <article>
+                <section class="five-day-forecast grid grid-cols-4 justify-between  items-center">
+                    <p class="text-lg">Today</p>
+                    <img src="" alt="weather-img">
+                    <p class="opacity-40">min-temp</p>
+                    <p>max-temp</p>
+                </section>
+                <section class="five-day-forecast grid grid-cols-4 justify-between items-center">
+                    <p class="text-lg">Today</p>
+                    <img src="" alt="weather-img">
+                    <p class="opacity-40">min-temp</p>
+                    <p>max-temp</p>
+                </section>
+
+            </article>
+        </article>
+
+        <article class="feels-like text-center flex flex-col justify-center">
+            <p class="text-3xl font-semibold mb-2 ">Feels Like</p>
+            <p class="feels-like-temp">feels-like-temp</p>
+        </article>
+        <article class="humidity text-center flex flex-col justify-center">
+            <p class="text-3xl font-semibold mb-2 ">Humidity</p>
+            <p class="humid-value">humid-value</p>
+        </article>
+    </main>
+</body>
+
+</html>
