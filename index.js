@@ -4,7 +4,7 @@ const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
 
 
 const getCurrentWeather = async (lat, lon) => {
-    response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
+    let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
     return response.json()
 }
 
@@ -30,7 +30,7 @@ const showCitiesOptions = async (event) => {
 }
 
 const loadCurrentWeather = ({ name: city, main: { temp, temp_min, temp_max }, weather: [{ description }] }) => {
-    currentweatherChilds = document.querySelectorAll(".current-weather>*")
+    let currentweatherChilds = document.querySelectorAll(".current-weather>*")
     currentweatherChilds[0].textContent = city;
     currentweatherChilds[1].textContent = `${temp}°`;
     currentweatherChilds[2].textContent = description;
@@ -39,7 +39,7 @@ const loadCurrentWeather = ({ name: city, main: { temp, temp_min, temp_max }, we
 }
 
 const get5day4hrforecast = async (lat, lon) => {
-    response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
+    let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
     return response.json()
 }
 
@@ -61,21 +61,21 @@ const formatAMPM = (date) => {
 const loadHourlyForecast = ({ main: { temp }, weather: [{ icon }] }, forecast) => {
     // "2023-05-25 06:00:00" - get current time in this format 
 
-    current_time = new Date().toTimeString().split(" ")[0]
+    let current_time = new Date().toTimeString().split(" ")[0]
     // current date 
     let [month, date, year] = new Date().toLocaleDateString().split("/")
     month = month.length == 2 ? month : "0" + month
-    current_date = `${year}-${month}-${date}`
-    current_date_time = current_date + " " + current_time
+    let current_date = `${year}-${month}-${date}`
+    let current_date_time = current_date + " " + current_time
 
     let starting_index;
-    next_forecast = forecast.list.find((forecast_ele, index) => {
+    let next_forecast = forecast.list.find((forecast_ele, index) => {
         starting_index = index
         return forecast_ele.dt_txt > current_date_time
     })
 
-    hourlyforecast = document.querySelector(".hourly-forecast-container>article");
-    hourlyforecast_childs = `<section class="hourly-forecast">
+    let hourlyforecast = document.querySelector(".hourly-forecast-container>article");
+    let hourlyforecast_childs = `<section class="hourly-forecast">
     <p class="text-lg">Now</p>
     <img src="${getIcon(icon)}" alt="weather-img" class="w-24 h-24 mt-9 mb-4">
     <p>${temp}°</p>
@@ -100,12 +100,12 @@ const dateText = (date_num) => {
 }
 
 const loadfivedayForecast = (forecast) => {
-    current_day_i = 0
+    let current_day_i = 0
     let weather_img;
     let mint = 1000, maxt = -1000;
-    day_date = forecast.list[0].dt_txt.split(" ")[0]
-    day_weather_icon = forecast.list[0].weather[0].icon
-    fivedayForecastHTML = ""
+    let day_date = forecast.list[0].dt_txt.split(" ")[0]
+    let day_weather_icon = forecast.list[0].weather[0].icon
+    let fivedayForecastHTML = ""
 
     for (let hourlyf of forecast.list) {
         if (day_date == hourlyf.dt_txt.split(" ")[0]) {
@@ -150,10 +150,10 @@ const loadHumidity = ({ main: { humidity } }) => {
 }
 
 const loadData = async (lat, lon) => {
-    currentWeather = await getCurrentWeather(lat, lon);
+    let currentWeather = await getCurrentWeather(lat, lon);
 
     loadCurrentWeather(currentWeather)
-    forecast = await get5day4hrforecast(lat, lon)
+    let forecast = await get5day4hrforecast(lat, lon)
     loadHourlyForecast(currentWeather, forecast)
     // console.log(forecast);
 
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadWeatherDetailsCurrentLoc()
 
 
-    search = document.querySelector("#search")
+    let search = document.querySelector("#search")
     // search.addEventListener("input", showCitiesOptions)
     search.addEventListener("input", debouceSearch)
     search.addEventListener("change", handleCitySelection)
